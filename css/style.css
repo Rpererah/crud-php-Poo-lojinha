@@ -1,0 +1,170 @@
+body{
+    background-color: #7aabf9;
+  }
+  #container{
+    margin: 0 auto;
+    width: auto;
+    max-width: 1200px;
+    font-family: 'Arimo', sans-serif;
+  }
+  #alter_del{
+    margin-top: 5px;
+    margin-left: 37%;
+    border-width: 1px;
+    width: 25%;
+    height: 3em;
+    padding: 5px;
+    line-height: 25px; 
+  }
+  #info_alter_del{
+    text-align: center;
+    color: white;
+  }
+  #info_alter_del a{
+    text-align: center;
+    color: black;
+  }
+  #customers {
+    border-collapse: collapse;
+    width: 50%;
+    margin-left: 25%;
+  }
+  
+  #customers td, #customers th {
+    border: 1px solid orange;
+    padding: 8px;
+  }
+  
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    background-color: orange;
+    color: #f2f2f2;
+  }
+  a{
+    text-decoration: none;
+  }
+  a:hover{
+    text-decoration: underline;
+  }
+  li{
+    list-style-type: square;
+    color: orange;
+    margin-left: 15px;
+  }
+  /* alterar-funcionario */
+  #middle{
+    background-color: white;
+    height: 500px;
+  }
+  #form{
+    margin-left: 500px;
+  }
+  #title{
+    font-family: 'Arimo', sans-serif;
+    text-align: center;
+    background-color: orange;
+    color: white;
+    padding: 3px;
+    font-size: 8px;
+  }
+  input{
+    margin-top: 15px;
+    margin-left: 5px;
+    padding: 5px;
+  }
+  #submit{
+    margin-left: 65px;
+    border-style: solid;
+    border-color: orange;
+    border-width: 1.5px;
+    border-radius: 2px;
+    background-color: transparent;
+    padding: 10px;
+  }
+  #submit:hover{
+    margin-left: 65px;
+    border-style: solid;
+    border-color: orange;
+    border-width: 1.5px;
+    border-radius: 2px;
+    background-color: transparent;
+    padding: 10px;
+    color: orange;
+  }
+  #info_user{
+    border-style: solid;
+    border-color: orange;
+    border-width: 1px;
+    background-color: transparent;
+    margin-top: 20px;
+    text-align: center;
+    margin-right: 510px;
+    color: black;
+    padding: 10px;
+  }
+  #sucesso{
+    width: 200px;
+    color: green;
+    text-align: center;
+  }
+  /* Cadastrar funcionário */
+  #cadastro{
+    margin-left: 420px;
+    text-align: center;
+    background-color: #ffc77f;
+    width: 350px;
+    height: 380px;
+  }
+  select{
+    margin-top: 10px;
+    padding: 5px;
+  }
+  .cadastro_submit{
+    padding: 10px;
+    background-color: transparent;
+    border-color: white;
+    border-radius: 2px;
+    color: black;
+  }
+  /* index */
+  /*#nav{
+    width: 100%;
+  }
+  nav a{
+    float: left;
+    margin-top: 10px;
+    margin-left: 280px;
+    color: white;
+    background-color: orange;
+    padding: 10px;
+    font-weight: bold;
+  }
+  nav a:hover{
+    float: left;
+    margin-top: 10px;
+    margin-left: 280px;
+    color: black;
+    background-color: orange;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+  }*/
+  #navigation{
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  #navigation a{
+    margin-left: 50px;
+    color: white;
+    text-decoration: none;
+  }
+  #navigation a:hover{
+    color: black;
+    text-decoration: none;
+  }
