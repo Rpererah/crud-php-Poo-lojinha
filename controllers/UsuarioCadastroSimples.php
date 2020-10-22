@@ -5,11 +5,9 @@ if(isset($_POST['submit'])){
 	$nome = $_POST['nome'];
 	$email = $_POST['email'];
 	$senha = $_POST['senha'];
-	$foto = $_FILES['myfile']['name'] ?? '';
 	$usuario->setNome($nome);
 	$usuario->setEmail($email);
 	$usuario->setSenha(md5($senha));
-	$usuario->setFoto($foto);
-	$usuario->insertU($nome, $email, $senha);
+	$usuario->insert($nome, $email, $senha);
 }
 ?>

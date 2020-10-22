@@ -60,11 +60,25 @@ class Usuario
 		}
     }
 
-    public function insert(){
+    // public function insert(){
+	// 	$conexao = new Conexao();
+	// 	$functions = new Functions();
+	// 	$sql = "INSERT INTO usuario(nome, email, senha, foto) VALUES ('{$this->getNome()}', '{$this->getEmail()}', '{$this->getSenha()}', '{$this->getFoto()}')";
+	// 	mysqli_query($conexao->conecta(), $sql);
+		
+	// }
+
+	public function insert(){
 		$conexao = new Conexao();
 		$functions = new Functions();
 		$sql = "INSERT INTO usuario(nome, email, senha, foto) VALUES ('{$this->getNome()}', '{$this->getEmail()}', '{$this->getSenha()}', '{$this->getFoto()}')";
-		mysqli_query($conexao->conecta(), $sql);
+		if(mysqli_query($conexao->conecta(), $sql) or die ){
+			$_SESSION['Cadastrado']="Cadastro Feito com sucesso";
+			header("Location: login.php");
+		}else{
+			$_SESSION['Cadastrado']="Erro ao efetuar cadastro";
+			header("Location: Cadastro.php");
+		}
 	}
 
     
