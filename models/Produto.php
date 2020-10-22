@@ -10,6 +10,7 @@ class Produto
     private $preco;
     private $precoColetivo;
     private $qntdColetivo;
+    private $query;
 
 
     //Metodos CRUD
@@ -71,7 +72,8 @@ class Produto
     public function mostraProduto(){
 		$conexao = new Conexao();
 		$sql = "SELECT * FROM produto ";
-		$query = mysqli_query($conexao->conecta(), $sql);
+        $query = mysqli_query($conexao->conecta(), $sql);
+        $this->setQuery($query);
 		
 		foreach ($query as $linha) {
 			$id = $linha['id_produto'];
@@ -79,9 +81,9 @@ class Produto
             $foto = $linha['foto'];
             $preco = $linha['preco'];
             $precoColetivo = $linha['precoColetivo'];
-			echo "<p>Nome:".$nome."<br />Foto: ".$foto."<br />Preco: ".$preco."<br />Preço Coletivo:".$precoColetivo. "</p>" ; 
-			echo "<a href='alterarProdutos.php?alterar=".$id." '>Alterar</a> | ";
-			echo "<a href='verProdutos.php?deleta=".$id." '>Deletar</a>";
+			// echo "<p>Nome:".$nome."<br />Foto: ".$foto."<br />Preco: ".$preco."<br />Preço Coletivo:".$precoColetivo. "</p>" ; 
+			// echo "<a href='alterarProdutos.php?alterar=".$id." '>Alterar</a> | ";
+			// echo "<a href='verProdutos.php?deleta=".$id." '>Deletar</a>";
 		}
 	}
 
@@ -106,6 +108,9 @@ class Produto
     public function getQntdColetivo(){
         return $this->qntdColetivo;
     }
+    public function getQuery(){
+        return $this->query;
+    }
     // Metodos Set
     public function setNome($novo_valor){
         $this->nome=$novo_valor;
@@ -121,6 +126,9 @@ class Produto
     }
     public function setQntdColetivo($novo_valor){
         $this->qntdColetivo=$novo_valor;
+    }
+    public function setQuery($novo_valor){
+        $this->query=$novo_valor;
     }
 }
 
