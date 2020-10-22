@@ -8,7 +8,9 @@ class Usuario
     private $adm_usuario;
     private $nome;
     private $email;
-    private $senha;
+	private $senha;
+	private $foto;
+	private $query;
 
  //Metodos CRUD
     public function select(){
@@ -21,8 +23,10 @@ class Usuario
 		foreach ($query as $linha) {
 			$nome = $linha['nome'];
 			$email = $linha['email'];
+			$foto = $linha['foto'];
 			$this->setNome($nome);
 			$this->setEmail($email);
+			$this->setFoto($foto);
 		}
 		
 
@@ -34,7 +38,7 @@ class Usuario
     public function insert(){
 		$conexao = new Conexao();
 		$functions = new Functions();
-		$sql = "INSERT INTO usuario(nome, email, senha) VALUES ('{$this->getNome()}', '{$this->getEmail()}', '{$this->getSenha()}')";
+		$sql = "INSERT INTO usuario(nome, email, senha, foto) VALUES ('{$this->getNome()}', '{$this->getEmail()}', '{$this->getSenha()}', '{$this->getFoto()}')";
 		mysqli_query($conexao->conecta(), $sql);
 	}
 
@@ -42,7 +46,7 @@ class Usuario
     public function update(){
 		$conexao = new Conexao();
 		$functions = new Functions();
-		$sql = "UPDATE usuario SET nome = '{$this->getNome()}' , email= '{$this->getEmail()}' WHERE id_usuario= '{$this->getId()}'";
+		$sql = "UPDATE usuario SET nome = '{$this->getNome()}', email= '{$this->getEmail()}', foto= '{$this->getFoto()}' WHERE id_usuario= '{$this->getId()}'";
 
 		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error())){
 			$functions->updateSucess();
@@ -65,16 +69,22 @@ class Usuario
     }
     public function mostraUsuario(){
 		$conexao = new Conexao();
-		$sql = "SELECT * FROM usuario ";
+		$sql = "SELECT * FROM usuario";
 		$query = mysqli_query($conexao->conecta(), $sql);
+		$this->setQuery($query);
 		
 		foreach ($query as $linha) {
 			$id = $linha['id_usuario'];
 			$nome = $linha['nome'];
 			$email = $linha['email'];
-			echo "<p>Nome:".$nome."<br />Email: ".$email."</p>" ; 
-			echo "<a href='alterarUsuarios.php?alterar=".$id." '>Alterar</a> | ";
-			echo "<a href='verUsuarios.php?deleta=".$id." '>Deletar</a>";
+			$foto = $linha['foto'];
+			$this->setFoto($foto);
+			$this->setNome($nome);
+			$this->setEmail($email);
+			$this->setId($id);
+			// echo "<p>Nome:".$nome."<br />Email: ".$email."</p>" ; 
+			// echo "<a href='alterarUsuarios.php?alterar=".$id." '>Alterar</a> | ";
+			// echo "<a href='verUsuarios.php?deleta=".$id." '>Deletar</a>";
 		}
 	}
     
@@ -95,6 +105,12 @@ class Usuario
     }
     public function getSenha(){
         return $this->senha;
+	}
+	public function getFoto(){
+        return $this->foto;
+	}
+	public function getQuery(){
+        return $this->query;
     }
     
 	// Metodos Set
@@ -112,6 +128,12 @@ class Usuario
     }
     public function setSenha($novo_valor){
         $this->senha=$novo_valor;
+	}
+	public function setFoto($novo_valor){
+        $this->foto=$novo_valor;
+	}
+	public function setQuery($novo_valor){
+        $this->query=$novo_valor;
     }
 }
 
