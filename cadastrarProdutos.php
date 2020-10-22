@@ -64,7 +64,7 @@
 						<h1>Cadastrar Produto</h1>
 					</div>
 						<div id="cadastro">
-							<form action="cadastrarProdutos.php" method="POST">
+							<form action="cadastrarProdutos.php" method="POST" enctype="multipart/form-data">
 								<br>
 								<input type="text" name="nome" placeholder="Nome Produto" required="required">
 								<br>

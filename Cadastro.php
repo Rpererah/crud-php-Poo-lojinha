@@ -6,15 +6,15 @@
         <form action="Cadastro.php" method="post">
         <div class="form-group">
                 <label for="Nome">Nome</label>
-                <input type="text" class="form-control" name="nome" />
+                <input type="text" class="form-control" name="nome" required />
             </div>
             <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="email" class="form-control" name="email" />
+                <input type="email" class="form-control" name="email" required />
             </div>
             <div class="form-group">
                 <label for="Senha">Senha</label>
-                <input type="password" class="form-control" name="senha" />
+                <input type="password" class="form-control" name="senha" required />
             </div>
             <?php
                 if(isset($_SESSION['Cadastrado'])){

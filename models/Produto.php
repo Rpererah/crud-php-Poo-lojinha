@@ -39,7 +39,7 @@ class Produto
 
     public function insert(){
 		$conexao = new Conexao();
-		$sql = "INSERT INTO produto(nome,foto,preco,precoColetivo,quantidadeColetivo) VALUES ('{$this->getNome()}','{$this->getFoto()}', '{$this->getPreco()}','{$this->getPrecoColetivo()}','{$this->getQntdColetivo()}')";
+		$sql = "INSERT INTO produto(nome,foto,preco,precoColetivo,qntdColetivo) VALUES ('{$this->getNome()}','{$this->getFoto()}', '{$this->getPreco()}','{$this->getPrecoColetivo()}','{$this->getQntdColetivo()}')";
         mysqli_query($conexao->conecta(), $sql);
 	}
 

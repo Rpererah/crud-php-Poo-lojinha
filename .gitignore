@@ -1,3 +1,4 @@
 #arquivo de conexao 
 config/Conexao.php
 uploads/usuarios/
+uploads/produtos/
