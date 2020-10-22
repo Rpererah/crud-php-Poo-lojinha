@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'config/Conexao.php';
 require_once 'controllers/Validacoes.php';
 require_once 'controllers/Functions.php';
@@ -13,6 +14,30 @@ class Usuario
 	private $query;
 
  //Metodos CRUD
+	public function login(){
+		$conexao = new Conexao();
+		$sql = "SELECT id_usuario, nome, email, adm_usuario FROM usuario WHERE email= '{$this->getEmail()}' AND senha='{$this->getSenha()}' LIMIT 1 ";
+		$query= mysqli_query($conexao->conecta(), $sql);
+		$resultado = mysqli_fetch_assoc($query);
+		if(isset($resultado)){
+		$_SESSION['usuarioId'] = $resultado['id_usuario'];
+        $_SESSION['usuarioNome'] = $resultado['nome'];
+        $_SESSION['usuarioNiveisAcessoId'] = $resultado['adm_usuario'];
+        $_SESSION['usuarioEmail'] = $resultado['email'];
+        if($_SESSION['usuarioNiveisAcessoId'] == "1"){
+			$_SESSION['estaLogado'] ="1";
+            header("Location: admin.php");
+        }else{
+			$_SESSION['estaLogado'] ="1";
+            header("Location: usuario.php");
+            }
+		}else{   
+			//Váriavel global recebendo a mensagem de erro
+            $_SESSION['loginErro'] = "Usuário ou senha Inválido";
+            header("Location: login.php");
+        }
+	}
+
     public function select(){
 		$id_atual = $_GET['alterar'];
 		$functions = new Functions();

@@ -77,8 +77,8 @@ class Produto
 			$id = $linha['id_produto'];
 			$nome = $linha['nome'];
             $foto = $linha['foto'];
-            $preco = $linha['preço'];
-            $precoColetivo = $linha['preçoColetivo'];
+            $preco = $linha['preco'];
+            $precoColetivo = $linha['precoColetivo'];
 			echo "<p>Nome:".$nome."<br />Foto: ".$foto."<br />Preco: ".$preco."<br />Preço Coletivo:".$precoColetivo. "</p>" ; 
 			echo "<a href='alterarProdutos.php?alterar=".$id." '>Alterar</a> | ";
 			echo "<a href='verProdutos.php?deleta=".$id." '>Deletar</a>";
