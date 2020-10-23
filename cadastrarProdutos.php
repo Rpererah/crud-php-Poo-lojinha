@@ -1,5 +1,13 @@
 <?php
 require_once 'models/Produto.php';
+
+session_start();
+
+if(!isset($_SESSION['usuarioId'])){
+    session_destroy();
+    header('Location: login.php');
+}
+
 if (isset($_FILES['myfile'])) {
 	$target_dir = "uploads/produtos/";
 	$target_file = $target_dir . basename($_FILES["myfile"]["name"]);

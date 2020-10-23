@@ -29,7 +29,7 @@ class Usuario
             header("Location: admin.php");
         }else{
 			$_SESSION['estaLogado'] ="1";
-            header("Location: usuario.php");
+            header("Location: index.php");
             }
 		}else{   
 			//Váriavel global recebendo a mensagem de erro

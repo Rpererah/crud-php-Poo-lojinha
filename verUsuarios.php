@@ -1,6 +1,7 @@
 <?php
 require_once 'models/Usuario.php';
 require_once 'controllers/Functions.php';
+session_start();
 $mostrar = new Usuario();
 $functions = new Functions();
 $mostrar->mostraUsuario();
@@ -9,6 +10,11 @@ $mostrar->mostraUsuario();
 // $emailAtual = $mostrar->getEmail();
 // $idAtual = $mostrar->getId();
 $queryAtual = $mostrar->getQuery();
+
+if(!isset($_SESSION['usuarioId'])){
+    session_destroy();
+    header('Location: login.php');
+}
 
 include_once 'header.php';
 ?>

@@ -3,6 +3,12 @@ session_start();
 $idUsuario = $_SESSION['usuarioId'] ?? '';
 include_once "header.php";
 include_once "models/Produto.php";
+
+if (!isset($_SESSION['usuarioId'])) {
+    session_destroy();
+    header('Location: login.php');
+}
+
 $mostrarProdutos = new Produto;
 $mostrarProdutos->mostraProduto();
 $queryAtual = $mostrarProdutos->getQuery();
