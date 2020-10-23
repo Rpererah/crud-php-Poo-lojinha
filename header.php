@@ -1,3 +1,15 @@
+<?php
+$endereco = $_SERVER['REQUEST_URI'];
+$strings = explode("/", $endereco);
+$path = end($strings);
+// echo $path;
+
+function activeNav($href, $path){
+    if($href == $path){
+        return 'active';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,18 +27,21 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Bargain Market</a>
+        <a class="navbar-brand" href="index.php">Bargain Market</a>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
+                <li class="nav-item <?= activeNav('index.php', $path) ?>">
                     <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= activeNav('cadastrarUsuarios.php', $path) ?>">
                     <a class="nav-link" href="cadastrarUsuarios.php">Usuarios</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item <?= activeNav('verProdutosUsuario.php', $path) ?>">
                     <a class="nav-link" href="verProdutosUsuario.php">Produtos</a>
+                </li>
+                <li class="nav-item <?= activeNav('logout.php', $path) ?>">
+                    <a class="nav-link" href="logout.php">Sair</a>
                 </li>
                 </form>
         </div>

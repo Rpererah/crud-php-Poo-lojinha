@@ -1,10 +1,19 @@
 <?php
+session_start();
+$idUsuario = $_SESSION['usuarioId'] ?? '';
 include_once "header.php";
 include_once "models/Produto.php";
 $mostrarProdutos = new Produto;
 $mostrarProdutos->mostraProduto();
 $queryAtual = $mostrarProdutos->getQuery();
 ?>
+<style>
+    .card-img-top {
+        width: 100%;
+        height: 15vw;
+        object-fit: cover;
+    }
+</style>
 <div class="container">
     <div class="container">
         <nav id="navigation">
@@ -18,17 +27,25 @@ $queryAtual = $mostrarProdutos->getQuery();
             </div>
             <br />
             <div class="row">
-                <?php foreach($queryAtual as $linha) : ?>
-                <div class="col-4">
-                    <div class="card">
-                        <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Nome Produto</h5>
-                            <p class="card-text">preço:</p>
-                            <a href="#" class="btn btn-primary">Reservar</a>
+                <?php foreach ($queryAtual as $linha) : ?>
+                    <div class="col-4" style="margin-bottom: 30px;">
+                        <div class="card">
+                            <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $linha['nome'] ?></h5>
+                                <p class="card-text"><?= $linha['preco'] ?></p>
+                                <form action="verProdutosUsuario.php" method="post">
+                                    <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
+                                    <input type="hidden" name="idProduto" value="<?= $linha['id_produto'] ?>">
+                                    <form action="verProdutosUsuario.php" method="post"></form>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
+                                    </div>
+                                    <button type="submit" name="submit" class="btn btn-primary">Reservar</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; ?>
             </div>
         </div>

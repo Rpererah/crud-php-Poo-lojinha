@@ -50,7 +50,7 @@ class Produto
 		$functionsP = new FunctionsP();
 		$sql = "UPDATE produto SET nome = '{$this->getNome()}' , foto= '{$this->getFoto()}' , preco= '{$this->getPreco()}', precoColetivo= '{$this->getPrecoColetivo()}' WHERE id_produto= '{$this->getId()}'";
 
-		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error())){
+		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error($conexao->conecta()))){
 			$functionsP->updateSucess();
 		}else{
 			$functionsP->errorMysql();
@@ -62,7 +62,7 @@ class Produto
 		$functionsP = new FunctionsP();
 		$sql = "DELETE FROM produto WHERE id_produto = {$this->getId()}";
 
-		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error())){
+		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error($conexao->conecta()))){
 			$functionsP->deleteSucess();
 		}
 		else{
