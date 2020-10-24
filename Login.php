@@ -1,5 +1,5 @@
     <?php
-    include_once 'header.php';
+    include_once 'partials/header.php';
     require_once 'models/Usuario.php';
     session_start();
     ?>
@@ -34,5 +34,5 @@
 
     <?php
     require_once 'controllers/UsuarioLogin.php';
-    include_once 'footer.php';
+    include_once 'partials/footer.php';
     ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
 $idUsuario = $_SESSION['usuarioId'] ?? '';
-include_once "header.php";
+include_once 'partials/header.php';
 include_once "models/Produto.php";
 
 if (!isset($_SESSION['usuarioId'])) {
@@ -23,13 +23,13 @@ $queryAtual = $mostrarProdutos->getQuery();
 <div class="container">
     <div class="container">
         <nav id="navigation">
-            <a href="cadastrarProdutos.php" class="btn btn-primary">CADASTRAR PRODUTOS</a>
             <a href="verProdutosUsuario.php" class="btn btn-primary">PRODUTOS CADASTRADOS</a>
+            <a href="cadastrarProdutos.php" class="btn btn-primary">CADASTRAR PRODUTOS</a>
         </nav>
         <br>
         <div id="middle">
             <div id="title">
-                <h1>Cadastrar Produto</h1>
+                <h1>Ver Produtos</h1>
             </div>
             <br />
             <div class="row">
@@ -39,11 +39,10 @@ $queryAtual = $mostrarProdutos->getQuery();
                             <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $linha['nome'] ?></h5>
-                                <p class="card-text"><?= $linha['preco'] ?></p>
+                                <p class="card-text"><?= 'R$' . number_format($linha['preco'] , $decimals = 2 , $dec_point = ',' , $thousands_sep = '.' ) ?></p>
                                 <form action="verProdutosUsuario.php" method="post">
                                     <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
                                     <input type="hidden" name="idProduto" value="<?= $linha['id_produto'] ?>">
-                                    <form action="verProdutosUsuario.php" method="post"></form>
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
                                     </div>
@@ -59,5 +58,5 @@ $queryAtual = $mostrarProdutos->getQuery();
 </div>
 
 <?php
-include_once "footer.php";
+include_once "partials/footer.php";
 ?>

@@ -1,10 +1,10 @@
 <?php
-function activeNav($href)
+function activeNav($href, $href2)
 {
     $endereco = $_SERVER['REQUEST_URI'];
     $strings = explode("/", $endereco);
     $path = end($strings);
-    if ($href == $path) {
+    if ($href == $path || $href2 == $path) {
         return 'active';
     }
 }
@@ -35,17 +35,17 @@ function estaLogado() {
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                <li class="nav-item <?= activeNav('index.php') ?>">
+                <li class="nav-item <?= activeNav('index.php', '') ?>">
                     <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item <?= activeNav('cadastrarUsuarios.php') ?>">
-                    <a class="nav-link" href="cadastrarUsuarios.php">Usuarios</a>
+                <li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
+                    <a class="nav-link" href="verUsuarios.php">Usuarios</a>
                 </li>
-                <li class="nav-item <?= activeNav('verProdutosUsuario.php') ?>">
+                <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
                     <a class="nav-link" href="verProdutosUsuario.php">Produtos</a>
                 </li>
-                <li class="nav-item <?= activeNav('login.php') ?>">
-                    <a class="nav-link" href="<?= estaLogado() ? 'logout.php' : 'login.php' ?>"><?= estaLogado() ? 'Sair' : 'Login' ?></a>
+                <li class="nav-item <?= activeNav('login.php', 'logout.php') ?>">
+                    <a class="nav-link" href="<?= estaLogado() ? 'controllers/logout.php' : 'login.php' ?>"><?= estaLogado() ? 'Sair' : 'Login' ?></a>
                 </li>
                 </form>
         </div>

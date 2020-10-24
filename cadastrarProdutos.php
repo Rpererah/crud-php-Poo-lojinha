@@ -48,12 +48,12 @@ if (isset($_FILES['myfile'])) {
 	}
 }
 
-include_once 'header.php';
+include_once 'partials/header.php';
 ?>
 <div class="container">
 	<nav id="navigation">
-		<a href="cadastrarProdutos.php" class="btn btn-primary">CADASTRAR PRODUTOS</a>
 		<a href="verProdutosUsuario.php" class="btn btn-primary">PRODUTOS CADASTRADOS</a>
+		<a href="cadastrarProdutos.php" class="btn btn-primary">CADASTRAR PRODUTOS</a>
 	</nav>
 	<br>
 	<div id="middle">

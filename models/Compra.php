@@ -1,5 +1,5 @@
 <?php
-require_once "config/Conexao.php";
+require_once "helpers/Conexao.php";
 class Compra
 {
 

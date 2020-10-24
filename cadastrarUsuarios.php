@@ -3,9 +3,9 @@ require_once 'models/Usuario.php';
 
 session_start();
 
-if(!isset($_SESSION['usuarioId'])){
-    session_destroy();
-    header('Location: login.php');
+if (!isset($_SESSION['usuarioId'])) {
+	session_destroy();
+	header('Location: login.php');
 }
 
 // var_dump($_FILES['myfile']) ?? 'vazioo';
@@ -54,17 +54,19 @@ if (isset($_FILES['myfile'])) {
 	}
 }
 
-include_once 'header.php';
+include_once 'partials/header.php';
 ?>
 <div class="container">
 	<nav id="navigation">
+		<a href="verUsuarios.php" class="btn btn-primary">USUÁRIOS CADASTRADOS</a>
 		<a href="cadastrarUsuarios.php" class="btn btn-primary">CADASTRAR USUARIOS</a>
-		<a href="verUsuarios.php" class="btn btn-primary">VISUALIZAR USUARIOS</a>
 	</nav>
+	<br>
 	<div id="middle">
 		<div id="title">
-			<h1>Cadastrar usuario</h1>
+			<h1>Cadastrar Usuário</h1>
 		</div>
+		<br>
 		<div id="cadastro">
 			<form action="cadastrarUsuarios.php" method="POST" enctype="multipart/form-data">
 				<div class="form-group">

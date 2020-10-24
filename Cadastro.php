@@ -1,6 +1,7 @@
 <?php
-    include_once 'header.php';
+    include_once 'partials/header.php';
     require_once 'models/Usuario.php';
+    session_start();
 ?>
     <div class="container">
         <form action="Cadastro.php" method="post">
@@ -31,6 +32,6 @@
     </div>
 <?php
         require_once 'controllers/UsuarioCadastroSimples.php';
-        include_once 'footer.php';
+        include_once 'partials/footer.php';
 ?>
 

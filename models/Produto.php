@@ -1,5 +1,5 @@
 <?php
-require_once 'config/Conexao.php';
+require_once "helpers/Conexao.php";
 require_once 'controllers/ValidacoesP.php';
 require_once 'controllers/FunctionsP.php';
 class Produto

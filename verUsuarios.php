@@ -11,12 +11,12 @@ $mostrar->mostraUsuario();
 // $idAtual = $mostrar->getId();
 $queryAtual = $mostrar->getQuery();
 
-if(!isset($_SESSION['usuarioId'])){
+if (!isset($_SESSION['usuarioId'])) {
     session_destroy();
     header('Location: login.php');
 }
 
-include_once 'header.php';
+include_once 'partials/header.php';
 ?>
 <style>
     .card-img-top {
@@ -27,9 +27,14 @@ include_once 'header.php';
 </style>
 <div class="container">
     <nav id="navigation">
+        <a href="verUsuarios.php" class="btn btn-primary">USUÁRIOS CADASTRADOS</a>
         <a href="cadastrarUsuarios.php" class="btn btn-primary">CADASTRAR USUARIOS</a>
-        <a href="verUsuarios.php" class="btn btn-primary">CADASTROS USUARIOS</a>
     </nav>
+    <br>
+    <div id="title">
+        <h1>Ver Usuários</h1>
+    </div>
+    <br />
     <div class="row">
         <?php foreach ($queryAtual as $linha) : ?>
             <div class="col-4" style="margin-bottom: 30px;">

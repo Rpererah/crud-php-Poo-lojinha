@@ -1,6 +1,6 @@
 <?php
 // session_start();
-require_once 'config/Conexao.php';
+require_once "helpers/Conexao.php";
 require_once 'controllers/Validacoes.php';
 require_once 'controllers/Functions.php';
 class Usuario

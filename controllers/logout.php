@@ -7,5 +7,5 @@ $_SESSION = [];
 
 // Por último, destrói a sessão
 session_destroy();
-header('Location: login.php');
+header('Location: ../login.php');
 ?>

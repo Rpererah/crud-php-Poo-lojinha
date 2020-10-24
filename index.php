@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once 'header.php';
+include_once 'partials/header.php';
 require_once 'models/Usuario.php';
 ?>
 
