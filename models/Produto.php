@@ -112,6 +112,9 @@ class Produto
         return $this->query;
     }
     // Metodos Set
+    public function setId($novo_valor){
+        $this->id=$novo_valor;
+    }
     public function setNome($novo_valor){
         $this->nome=$novo_valor;
     }

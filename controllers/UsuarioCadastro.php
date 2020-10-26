@@ -10,6 +10,6 @@ if(isset($_POST['submit'])){
 	$usuario->setEmail($email);
 	$usuario->setSenha(md5($senha));
 	$usuario->setFoto($foto);
-	$usuario->insert($nome, $email, $senha);
+	$usuario->insert($nome, $email, $senha,$foto);
 }
 ?>

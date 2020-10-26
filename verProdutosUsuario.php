@@ -22,10 +22,6 @@ $queryAtual = $mostrarProdutos->getQuery();
 </style>
 <div class="container">
     <div class="container">
-        <nav id="navigation">
-            <a href="verProdutosUsuario.php" class="btn btn-primary">PRODUTOS CADASTRADOS</a>
-            <a href="cadastrarProdutos.php" class="btn btn-primary">CADASTRAR PRODUTOS</a>
-        </nav>
         <br>
         <div id="middle">
             <div id="title">
@@ -41,8 +37,8 @@ $queryAtual = $mostrarProdutos->getQuery();
                                 <h5 class="card-title"><?= $linha['nome'] ?></h5>
                                 <p class="card-text"><?= 'R$' . number_format($linha['preco'] , $decimals = 2 , $dec_point = ',' , $thousands_sep = '.' ) ?></p>
                                 <form action="verProdutosUsuario.php" method="post">
-                                    <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
-                                    <input type="hidden" name="idProduto" value="<?= $linha['id_produto'] ?>">
+                                    <input type="hidden" name="id_usuario" value="<?= $idUsuario ?>">
+                                    <input type="hidden" name="id_produto" value="<?= $linha['id_produto'] ?>">
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
                                     </div>
@@ -53,6 +49,9 @@ $queryAtual = $mostrarProdutos->getQuery();
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php
+			include 'controllers/CompraCadastro.php';
+			?>
         </div>
     </div>
 </div>
