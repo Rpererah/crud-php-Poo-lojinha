@@ -9,9 +9,23 @@ function activeNav($href, $href2)
     }
 }
 
-function estaLogado() {
-    if (isset($_SESSION['usuarioId'])){
-        return true;
+function estaLogado()
+{
+    return (isset($_SESSION['usuarioId']));
+}
+
+function verificaAdmin()
+{
+    if (isset($_SESSION['usuarioNiveisAcessoId'])) {
+        if ($_SESSION['usuarioNiveisAcessoId'] == 1) {
+            return $nivel = 2;
+        }
+    } elseif (isset($_SESSION['estaLogado'])) {
+        if ($_SESSION['estaLogado'] == 1) {
+            return $nivel = 1;
+        }
+    } else {
+        return $nivel = 0;
     }
 }
 ?>
@@ -38,11 +52,16 @@ function estaLogado() {
                 <li class="nav-item <?= activeNav('index.php', '') ?>">
                     <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
                 </li>
-                <li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
-                    <a class="nav-link" href="verUsuarios.php">Usuarios</a>
-                </li>
-                <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
-                    <a class="nav-link" href="verProdutosUsuario.php">Produtos</a>
+                <?php if (estaLogado()) : ?>
+                    <li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
+                        <a class="nav-link" href="verUsuarios.php">Usuarios</a>
+                    </li>
+                    <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
+                        <a class="nav-link" href="verProdutosUsuario.php">Produtos</a>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-item <?= activeNav('verCompras.php', '') ?>">
+                    <a class="nav-link" href="verCompras.php">Compras</a>
                 </li>
                 <li class="nav-item <?= activeNav('login.php', 'logout.php') ?>">
                     <a class="nav-link" href="<?= estaLogado() ? 'controllers/logout.php' : 'login.php' ?>"><?= estaLogado() ? 'Sair' : 'Login' ?></a>

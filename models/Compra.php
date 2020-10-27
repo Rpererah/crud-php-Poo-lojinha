@@ -27,7 +27,7 @@ public function mostraCompra(){
 
     public function filtrarCompraComDesconto(){
         $conexao = new Conexao();
-        $sql = "SELECT usuario.nome,produto.nome,produto.quantidadeColetivo,quantidade
+        $sql = "SELECT usuario.nome AS usuario, produto.nome AS produto, produto.quantidadeColetivo AS coletivo, quantidade
         FROM Compra 
         INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
         INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
@@ -68,7 +68,7 @@ public function getQuery(){
 }
 
 public function setId_usuario($novoValor){
-    $this->adm_usuario=$novoValor; 
+    $this->id_usuario=$novoValor; 
 }
 public function setId_produto($novoValor){
     $this->id_produto=$novoValor;

@@ -3,9 +3,13 @@ require_once 'models/Usuario.php';
 
 session_start();
 
-if (!isset($_SESSION['usuarioId'])) {
+if ($_SESSION['usuarioNiveisAcessoId'] != "1") {
+	$_SESSION['loginErro'] = "Você não é adminitrador";
+	header('Location: index.php');
+} elseif ($_SESSION['estaLogado'] != "1") {
+	$_SESSION['loginErro'] = "Você não está logado";
 	session_destroy();
-	header('Location: login.php');
+	header("Location: login.php");
 }
 
 // var_dump($_FILES['myfile']) ?? 'vazioo';

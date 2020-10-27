@@ -30,7 +30,7 @@ $queryAtual = $mostrarProdutos->getQuery();
             <br />
             <div class="row">
                 <?php foreach ($queryAtual as $linha) : ?>
-                    <div class="col-4" style="margin-bottom: 30px;">
+                    <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
                         <div class="card">
                             <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>">
                             <div class="card-body">
