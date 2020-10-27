@@ -83,13 +83,13 @@ if (isset($_SESSION['usuarioId'])) {
                 if ($nivel != 2) {
                     "";
                 } else {
-                ?><li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
+                    ?><li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
                         <a class="nav-link" href="verUsuarios.php">Usuarios</a>
                     </li><?php
-                        }
-                            ?>
+                    }
+                    ?>
                 <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
-                    <a class="nav-link" href="<?= ($nivel != 2) ? 'verProdutosUsuario.php' : 'cadastrarProdutos' ?>">Produtos</a>
+                    <a class="nav-link" href="<?= ($nivel != 2) ? 'verProdutosUsuario.php' : 'cadastrarProdutos.php' ?>">Produtos</a>
                 </li>
                 <li class="nav-item <?= activeNav('verCompras.php', '#') ?>">
                     <a class="nav-link" href="verCompras.php">Compras</a>
