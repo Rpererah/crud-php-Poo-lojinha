@@ -29,9 +29,9 @@
             <tbody>
                 <?php foreach ($queryAtual as $linha) : ?>
                     <tr>
-                        <td><?= $linha['produto.nome'] ?></td>
-                        <td><?= $linha['compra.quantidade'] ?></td>
-                        <td><?= $linha['produto.precoColetivo'] ?></td>
+                        <td><?= $linha['Pnome'] ?></td>
+                        <td><?= $linha['quantidade'] ?></td>
+                        <td><?= $linha['Ppcoletivo'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

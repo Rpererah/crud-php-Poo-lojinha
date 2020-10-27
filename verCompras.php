@@ -5,7 +5,8 @@ session_start();
 include_once 'partials/header.php';
 $mostrar = new Compra();
 $nivel = verificaAdmin();
-
+$idUsuario = $_SESSION['usuarioId'] ?? '';
+$idAtual=$mostrar->setId_usuario($idUsuario);
 switch ($nivel) {
     case 1:
         $mostrar->filtrarCompraPorUsuario();

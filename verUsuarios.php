@@ -2,6 +2,26 @@
 require_once 'models/Usuario.php';
 require_once 'controllers/Functions.php';
 session_start();
+
+function verificaAdmin1()
+{
+    if (isset($_SESSION['usuarioNiveisAcessoId'])) {
+        if ($_SESSION['usuarioNiveisAcessoId'] == 1) {
+            
+            return $nivel = 2;
+            echo $nivel;
+        }
+    } elseif (isset($_SESSION['estaLogado'])) {
+        if ($_SESSION['estaLogado'] == 1) {
+            return $nivel = 1;
+
+        }
+    } else {
+        return $nivel = 0;
+    }
+}
+    
+
 $mostrar = new Usuario();
 $functions = new Functions();
 $mostrar->mostraUsuario();
@@ -11,7 +31,9 @@ $mostrar->mostraUsuario();
 // $idAtual = $mostrar->getId();
 $queryAtual = $mostrar->getQuery();
 
-if (!isset($_SESSION['usuarioId'])) {
+$nivel=verificaAdmin1();
+
+if (!isset($_SESSION['usuarioId']) || $nivel!=2) {
     session_destroy();
     header('Location: login.php');
 }

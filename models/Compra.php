@@ -27,13 +27,11 @@ public function mostraCompra(){
 
     public function filtrarCompraComDesconto(){
         $conexao = new Conexao();
-        $sql = "SELECT usuario.nome AS usuario, produto.nome AS produto, produto.quantidadeColetivo AS coletivo, quantidade
-        FROM Compra 
-        INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
+        $sql = "SELECT compra.id_produto,produto.nome AS Pnome,SUM(quantidade) AS QntdTotal,produto.quantidadeColetivo AS Qcoletivo
+        FROM compra
         INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
-        GROUP BY Produto.id_produto,usuario.id_usuario
+        GROUP BY compra.id_produto
         HAVING SUM(quantidade)>produto.quantidadeColetivo
-        ORDER BY usuario.nome;
         ";
         $query = mysqli_query($conexao->conecta(), $sql);
         $this->setQuery($query);
@@ -41,7 +39,7 @@ public function mostraCompra(){
 
     public function filtrarCompraPorUsuario(){
         $conexao = new Conexao();
-        $sql = "SELECT usuario.id_usuario, usuario.nome,produto.nome,produto.quantidadeColetivo,quantidade,produto.precoColetivo
+        $sql = "SELECT usuario.id_usuario AS usuario, usuario.nome AS Unome,produto.nome AS Pnome,produto.quantidadeColetivo AS Pquantidade,quantidade,produto.precoColetivo AS Ppcoletivo
         FROM Compra 
         INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
         INNER JOIN Produto ON Compra.id_produto=Produto.id_produto

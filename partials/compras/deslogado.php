@@ -19,7 +19,7 @@
                         Nome do Produto
                     </th>
                     <th>
-                        Quantidade Comprada por Usuario
+                        Quantidades totais compradas
                     </th>
                     <th>
                         Quantidade p/ valor Coletivo
@@ -29,9 +29,9 @@
             <tbody>
                 <?php foreach ($queryAtual as $linha) : ?>
                     <tr>
-                        <td><?= $linha['produto'] ?></td>
-                        <td><?= $linha['coletivo'] ?></td>
-                        <td><?= $linha['quantidade'] ?></td>
+                        <td><?= $linha['Pnome'] ?></td>
+                        <td><?= $linha['QntdTotal'] ?></td>
+                        <td><?= $linha['Qcoletivo'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

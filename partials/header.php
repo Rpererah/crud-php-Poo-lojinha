@@ -18,16 +18,21 @@ function verificaAdmin()
 {
     if (isset($_SESSION['usuarioNiveisAcessoId'])) {
         if ($_SESSION['usuarioNiveisAcessoId'] == 1) {
+            
             return $nivel = 2;
+            echo $nivel;
         }
     } elseif (isset($_SESSION['estaLogado'])) {
         if ($_SESSION['estaLogado'] == 1) {
             return $nivel = 1;
+
         }
     } else {
         return $nivel = 0;
     }
 }
+
+$nivel=verificaAdmin();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,16 +55,20 @@ function verificaAdmin()
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item <?= activeNav('index.php', '') ?>">
-                    <a class="nav-link" href="index.php">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" href="<?= ($nivel!=2) ? 'index.php':'admin.php' ?>">Home <span class="sr-only"></span></a>
                 </li>
-                <?php if (estaLogado()) : ?>
-                    <li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
-                        <a class="nav-link" href="verUsuarios.php">Usuarios</a>
-                    </li>
+            <?php 
+            if($nivel!=2){
+                "";
+            }else{
+                ?><li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
+                <a class="nav-link" href="verUsuarios.php">Usuarios</a>
+            </li><?php
+            }
+            ?>
                     <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
-                        <a class="nav-link" href="verProdutosUsuario.php">Produtos</a>
+                        <a class="nav-link" href="<?= ($nivel!=2) ? 'verProdutosUsuario.php':'cadastrarProdutos' ?>">Produtos</a>
                     </li>
-                <?php endif; ?>
                 <li class="nav-item <?= activeNav('verCompras.php', '') ?>">
                     <a class="nav-link" href="verCompras.php">Compras</a>
                 </li>

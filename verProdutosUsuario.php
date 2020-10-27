@@ -9,9 +9,9 @@ if (!isset($_SESSION['usuarioId'])) {
     header('Location: login.php');
 }
 
-$resultado = $_SESSION['itens'];
 
-$mostrarProdutos = new Produto;
+$mostrarProdutosSD = new Produto;
+$mostrarProdutosCD = new Produto;
 $mostrarProdutosSD->filtrarCompraSemDesconto();
 $mostrarProdutosCD->filtrarCompraComDesconto();
 $queryComDesconto = $mostrarProdutosCD->getQuery();
@@ -37,16 +37,16 @@ $querySemDesconto = $mostrarProdutosSD->getQuery();
                 <?php foreach ($queryComDesconto as $linhaCD) : ?>
                     <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
                         <div class="card">
-                            <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>">
+                            <img src="uploads/produtos/<?= $linhaCD['fotoCD'] ?>" class="card-img-top" alt="<?= $linhaCD['fotoCD'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $linha['nome'] ?></h5>
+                                <h5 class="card-title"><?= $linhaCD['produtoCD'] ?></h5>
 
 
 
-                                <p class="card-text"><span class="badge badge-secondary">R$<?= number_format($linha['preco'], $decimals = 2, $dec_point = ',', $thousands_sep = '.') ?></span></p>
+                                <p class="card-text"><span class="badge badge-warning">R$<?= number_format($linhaCD['precoCD'], $decimals = 2, $dec_point = ',', $thousands_sep = '.') ?></span></p>
                                 <form action="verProdutosUsuario.php" method="post">
                                     <input type="hidden" name="id_usuario" value="<?= $idUsuario ?>">
-                                    <input type="hidden" name="id_produto" value="<?= $linha['id_produto'] ?>">
+                                    <input type="hidden" name="id_produto" value="<?= $linhaCD['id_produtoCD'] ?>">
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
                                     </div>
@@ -59,13 +59,13 @@ $querySemDesconto = $mostrarProdutosSD->getQuery();
                 <?php foreach ($querySemDesconto as $linhaSD) : ?>
                     <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
                         <div class="card">
-                            <img src="uploads/produtos/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>">
+                            <img src="uploads/produtos/<?= $linhaSD['fotoSD'] ?>" class="card-img-top" alt="<?= $linhaSD['fotoSD'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $linha['nome'] ?></h5>
-                                <p class="card-text"><?= number_format($linha['preco'], $decimals = 2, $dec_point = ',', $thousands_sep = '.')  ?></p>
+                                <h5 class="card-title"><?= $linhaSD['produtoSD'] ?></h5>
+                                <p class="card-text"><span class="badge badge-info">R$<?= number_format($linhaSD['precoSD'], $decimals = 2, $dec_point = ',', $thousands_sep = '.')  ?></span></p>
                                 <form action="verProdutosUsuario.php" method="post">
                                     <input type="hidden" name="id_usuario" value="<?= $idUsuario ?>">
-                                    <input type="hidden" name="id_produto" value="<?= $linha['id_produto'] ?>">
+                                    <input type="hidden" name="id_produto" value="<?= $linhaSD['id_produtoSD'] ?>">
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
                                     </div>

@@ -8,7 +8,7 @@
 <div class="container">
     <br>
     <div id="title">
-        <h1>Ver Compras</h1>
+        <h1>Ver Todas as Compras Efetuadas no site</h1>
     </div>
     <br />
     <div class="row">
