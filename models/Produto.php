@@ -69,23 +69,52 @@ class Produto
 			$functionsP->errorMysql();
 		}
     }
-    public function mostraProduto(){
-		$conexao = new Conexao();
-		$sql = "SELECT * FROM produto ";
+
+    public function filtrarCompraComDesconto(){
+        $conexao = new Conexao();
+        $sql = "SELECT usuario.nome AS usuario, produto.nome AS produto, produto.quantidadeColetivo AS coletivo, quantidade
+        FROM Compra 
+        INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
+        INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
+        GROUP BY Produto.id_produto,usuario.id_usuario
+        HAVING SUM(quantidade)>produto.quantidadeColetivo
+        ORDER BY usuario.nome;
+        ";
         $query = mysqli_query($conexao->conecta(), $sql);
         $this->setQuery($query);
+    }
+
+    public function filtrarCompraSemDesconto(){
+        $conexao = new Conexao();
+        $sql = "SELECT usuario.nome AS usuario, produto.nome AS produto, produto.quantidadeColetivo AS coletivo, quantidade
+        FROM Compra 
+        INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
+        INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
+        GROUP BY Produto.id_produto,usuario.id_usuario
+        HAVING SUM(quantidade)<=produto.quantidadeColetivo
+        ORDER BY usuario.nome;
+        ";
+        $query = mysqli_query($conexao->conecta(), $sql);
+        $this->setQuery($query);
+    }
+    
+    // public function mostraProduto(){
+	// 	$conexao = new Conexao();
+	// 	$sql = "SELECT * FROM produto ";
+    //     $query = mysqli_query($conexao->conecta(), $sql);
+    //     $this->setQuery($query);
 		
-		foreach ($query as $linha) {
-			$id = $linha['id_produto'];
-			$nome = $linha['nome'];
-            $foto = $linha['foto'];
-            $preco = $linha['preco'];
-            $precoColetivo = $linha['precoColetivo'];
-			// echo "<p>Nome:".$nome."<br />Foto: ".$foto."<br />Preco: ".$preco."<br />Preço Coletivo:".$precoColetivo. "</p>" ; 
-			// echo "<a href='alterarProdutos.php?alterar=".$id." '>Alterar</a> | ";
-			// echo "<a href='verProdutos.php?deleta=".$id." '>Deletar</a>";
-		}
-	}
+	// 	foreach ($query as $linha) {
+	// 		$id = $linha['id_produto'];
+	// 		$nome = $linha['nome'];
+    //         $foto = $linha['foto'];
+    //         $preco = $linha['preco'];
+    //         $precoColetivo = $linha['precoColetivo'];
+	// 		// echo "<p>Nome:".$nome."<br />Foto: ".$foto."<br />Preco: ".$preco."<br />Preço Coletivo:".$precoColetivo. "</p>" ; 
+	// 		// echo "<a href='alterarProdutos.php?alterar=".$id." '>Alterar</a> | ";
+	// 		// echo "<a href='verProdutos.php?deleta=".$id." '>Deletar</a>";
+	// 	}
+	// }
 
 
     // Metodos Get

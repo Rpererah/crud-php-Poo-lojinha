@@ -32,7 +32,7 @@ public function mostraCompra(){
         INNER JOIN Usuario ON Compra.id_usuario=Usuario.id_usuario
         INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
         GROUP BY Produto.id_produto,usuario.id_usuario
-        HAVING SUM(quantidade)>=produto.quantidadeColetivo
+        HAVING SUM(quantidade)>produto.quantidadeColetivo
         ORDER BY usuario.nome;
         ";
         $query = mysqli_query($conexao->conecta(), $sql);
