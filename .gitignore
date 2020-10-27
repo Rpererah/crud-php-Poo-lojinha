@@ -1,4 +1,5 @@
 #arquivo de conexao 
-config/Conexao.php
+config/
+helpers/Conexao.php
 uploads/usuarios/*
 uploads/produtos/*

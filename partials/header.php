@@ -14,25 +14,40 @@ function estaLogado()
     return (isset($_SESSION['usuarioId']));
 }
 
+function retornaId()
+{
+    if (isset($_SESSION['usuarioId'])) {
+        return $_SESSION['usuarioId'];
+    }
+}
+
 function verificaAdmin()
 {
     if (isset($_SESSION['usuarioNiveisAcessoId'])) {
         if ($_SESSION['usuarioNiveisAcessoId'] == 1) {
-            
+
             return $nivel = 2;
             echo $nivel;
         }
     } elseif (isset($_SESSION['estaLogado'])) {
         if ($_SESSION['estaLogado'] == 1) {
             return $nivel = 1;
-
         }
     } else {
         return $nivel = 0;
     }
 }
+$idUsuario = retornaId();
 
-$nivel=verificaAdmin();
+require_once 'models/Usuario.php';
+$mostrar = new Usuario();
+$functions = new Functions();
+$mostrar->mostraFotoUsuario($idUsuario);
+$nivel = verificaAdmin();
+if (isset($_SESSION['usuarioId'])) {
+    $queryAtual = $mostrar->getQuery();
+    $foto = $queryAtual['foto'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,6 +60,13 @@ $nivel=verificaAdmin();
     <title>Bargain Market</title>
 </head>
 
+<style>
+    .avatar {
+        vertical-align: middle;
+        border-radius: 50%;
+    }
+</style>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,26 +77,30 @@ $nivel=verificaAdmin();
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item <?= activeNav('index.php', '') ?>">
-                    <a class="nav-link" href="<?= ($nivel!=2) ? 'index.php':'admin.php' ?>">Home <span class="sr-only"></span></a>
+                    <a class="nav-link" href="<?= ($nivel != 2) ? 'index.php' : 'admin.php' ?>">Home <span class="sr-only"></span></a>
                 </li>
-            <?php 
-            if($nivel!=2){
-                "";
-            }else{
+                <?php
+                if ($nivel != 2) {
+                    "";
+                } else {
                 ?><li class="nav-item <?= activeNav('verUsuarios.php', 'cadastrarUsuarios.php') ?>">
-                <a class="nav-link" href="verUsuarios.php">Usuarios</a>
-            </li><?php
-            }
-            ?>
-                    <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
-                        <a class="nav-link" href="<?= ($nivel!=2) ? 'verProdutosUsuario.php':'cadastrarProdutos' ?>">Produtos</a>
-                    </li>
-                <li class="nav-item <?= activeNav('verCompras.php', '') ?>">
+                        <a class="nav-link" href="verUsuarios.php">Usuarios</a>
+                    </li><?php
+                        }
+                            ?>
+                <li class="nav-item <?= activeNav('verProdutosUsuario.php', 'cadastrarProdutos.php') ?>">
+                    <a class="nav-link" href="<?= ($nivel != 2) ? 'verProdutosUsuario.php' : 'cadastrarProdutos' ?>">Produtos</a>
+                </li>
+                <li class="nav-item <?= activeNav('verCompras.php', '#') ?>">
                     <a class="nav-link" href="verCompras.php">Compras</a>
                 </li>
                 <li class="nav-item <?= activeNav('login.php', 'logout.php') ?>">
                     <a class="nav-link" href="<?= estaLogado() ? 'controllers/logout.php' : 'login.php' ?>"><?= estaLogado() ? 'Sair' : 'Login' ?></a>
                 </li>
-                </form>
+                <?php if (estaLogado() && !empty($foto)) : ?>
+                    <a class="navbar-brand" href="#">
+                        <img src="uploads/usuarios/<?= $foto ?>" width="30" height="30" alt="Foto Usuário" loading="lazy" class="avatar">
+                    </a>
+                <?php endif; ?>
         </div>
     </nav>

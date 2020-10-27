@@ -87,7 +87,7 @@ class Usuario
 		$functions = new Functions();
 		$sql = "UPDATE usuario SET nome = '{$this->getNome()}', email= '{$this->getEmail()}', foto= '{$this->getFoto()}' WHERE id_usuario= '{$this->getId()}'";
 
-		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error())){
+		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error($conexao))){
 			$functions->updateSucess();
 		}else{
 			$functions->errorMysql();
@@ -99,7 +99,7 @@ class Usuario
 		$functions = new Functions();
 		$sql = "DELETE FROM usuario WHERE id_usuario = {$this->getId()}";
 
-		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error())){
+		if(mysqli_query($conexao->conecta(), $sql) or die (mysqli_error($conexao))){
 			$functions->deleteSucess();
 		}
 		else{
@@ -125,6 +125,14 @@ class Usuario
 			// echo "<a href='alterarUsuarios.php?alterar=".$id." '>Alterar</a> | ";
 			// echo "<a href='verUsuarios.php?deleta=".$id." '>Deletar</a>";
 		}
+	}
+
+	public function mostraFotoUsuario($id){
+		$conexao = new Conexao();
+		$sql = "SELECT foto FROM usuario WHERE id_usuario = '$id' LIMIT 1";
+		$con = mysqli_query($conexao->conecta(), $sql);
+		$row = $con->fetch_array();
+		$this->setQuery($row);
 	}
     
 

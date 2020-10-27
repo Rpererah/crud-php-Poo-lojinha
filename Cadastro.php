@@ -48,7 +48,7 @@ if (isset($_FILES['myfile'])) {
     session_start();
 ?>
     <div class="container">
-        <form action="Cadastro.php" method="post">
+        <form action="Cadastro.php" method="post" enctype="multipart/form-data">
         <div class="form-group">
                 <label for="Nome">Nome</label>
                 <input type="text" class="form-control" name="nome" required />
