@@ -29,7 +29,7 @@ $mostrar->mostraUsuario();
 // $nomeAtual = $mostrar->getNome();
 // $emailAtual = $mostrar->getEmail();
 // $idAtual = $mostrar->getId();
-$queryAtual = $mostrar->getQuery();
+$queryAtual1 = $mostrar->getQuery();
 
 $nivel=verificaAdmin1();
 
@@ -58,7 +58,7 @@ include_once 'partials/header.php';
     </div>
     <br />
     <div class="row">
-        <?php foreach ($queryAtual as $linha) : ?>
+        <?php foreach ($queryAtual1 as $linha) : ?>
             <div class="col-4" style="margin-bottom: 30px;">
                 <div class="card">
                     <img src="uploads/usuarios/<?= $foto = $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>" width="200px">

@@ -72,7 +72,7 @@ class Produto
 
     public function filtrarCompraComDesconto(){
         $conexao = new Conexao();
-        $sql = "SELECT compra.id_produto AS id_produtoCD, SUM(quantidade),produto.quantidadeColetivo ,produto.foto AS fotoCD,produto.nome AS produtoCD,precoColetivo AS precoCD
+        $sql = "SELECT compra.id_produto AS id_produtoCD, SUM(quantidade),produto.quantidadeColetivo ,produto.foto AS fotoCD ,produto.nome AS produtoCD, precoColetivo AS precoCD
         FROM compra
         INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
         GROUP BY compra.id_produto
@@ -85,13 +85,7 @@ class Produto
 
     public function filtrarCompraSemDesconto(){
         $conexao = new Conexao();
-        $sql = "SELECT compra.id_produto AS id_produtoSD, SUM(quantidade),produto.quantidadeColetivo ,produto.foto AS fotoSD,produto.nome AS produtoSD,preco AS precoSD
-        FROM compra
-        INNER JOIN Produto ON Compra.id_produto=Produto.id_produto
-        GROUP BY compra.id_produto
-        HAVING SUM(quantidade)<=produto.quantidadeColetivo
-        ORDER BY produto.nome
-        ";
+        $sql = "SELECT * FROM produto";
         $query = mysqli_query($conexao->conecta(), $sql);
         $this->setQuery($query);
     }

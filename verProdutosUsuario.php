@@ -59,13 +59,13 @@ $querySemDesconto = $mostrarProdutosSD->getQuery();
                 <?php foreach ($querySemDesconto as $linhaSD) : ?>
                     <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
                         <div class="card">
-                            <img src="uploads/produtos/<?= $linhaSD['fotoSD'] ?>" class="card-img-top" alt="<?= $linhaSD['fotoSD'] ?>">
+                            <img src="uploads/produtos/<?= $linhaSD['foto'] ?>" class="card-img-top" alt="<?= $linhaSD['foto'] ?>">
                             <div class="card-body">
-                                <h5 class="card-title"><?= $linhaSD['produtoSD'] ?></h5>
-                                <p class="card-text"><span class="badge badge-info">R$<?= number_format($linhaSD['precoSD'], $decimals = 2, $dec_point = ',', $thousands_sep = '.')  ?></span></p>
+                                <h5 class="card-title"><?= $linhaSD['nome'] ?></h5>
+                                <p class="card-text"><span class="badge badge-info">R$<?= number_format($linhaSD['preco'], $decimals = 2, $dec_point = ',', $thousands_sep = '.')  ?></span></p>
                                 <form action="verProdutosUsuario.php" method="post">
                                     <input type="hidden" name="id_usuario" value="<?= $idUsuario ?>">
-                                    <input type="hidden" name="id_produto" value="<?= $linhaSD['id_produtoSD'] ?>">
+                                    <input type="hidden" name="id_produto" value="<?= $linhaSD['id_produto'] ?>">
                                     <div class="form-group">
                                         <input type="number" class="form-control" name="quantidade" id="quantidade" placeholder="Quantidade" min="0">
                                     </div>
