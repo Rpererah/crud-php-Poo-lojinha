@@ -61,7 +61,7 @@ include_once 'partials/header.php';
         <?php foreach ($queryAtual1 as $linha) : ?>
             <div class="col-4" style="margin-bottom: 30px;">
                 <div class="card">
-                    <img src="uploads/usuarios/<?= $foto = $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>" width="200px">
+                    <img src="uploads/usuarios/<?= $linha['foto'] ?>" class="card-img-top" alt="<?= $linha['foto'] ?>" width="200px">
                     <div class="card-body">
                         <h5 class="card-title"><?= $linha['nome'] ?></h5>
                         <p class="card-text"><?= $linha['email'] ?></p>
